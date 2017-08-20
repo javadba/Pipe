@@ -543,9 +543,10 @@ def lineout(x):
     sys.stdout.write(str(x) + "\n")
 
 @Pipe
-def tee(iterable):
-    for item in iterable:
-        sys.stdout.write(str(item) + "\n")
+def tee(iterable, nlines=100):
+    for x,item in enumerate(iterable):
+        if (x < nlines):
+            sys.stdout.write(str(item) + "\n")
         yield item
 
 @Pipe

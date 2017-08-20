@@ -3,12 +3,12 @@ from distutils.core import setup
 setup(
     name = 'pipe',
     py_modules = ['pipe'],
-    version = '1.4.1',
+    version = '1.5',
     description = 'Module enablig a sh like infix syntax (using pipes)',
-    author='Julien Palard',
-    author_email='julien@palard.fr',
-    url='https://github.com/JulienPalard/Pipe',
-    download_url='https://github.com/JulienPalard/Pipe/tarball/master',
+    author='Julien Palard,Stephen Boesch (small enhancements)',
+    author_email='javadba@gmail.com',
+    url='https://github.com/javadba/Pipe',
+    download_url='https://github.com/javadba/Pipe/tarball/pipesteve'
     long_description="""Pipe is a module enablig a sh like infix syntax (using pipes)'.
 
 As an exemple, here is the solution for the 2nd Euler Project exercise :
@@ -21,6 +21,8 @@ Given fib a generator of fibonacci numbers ::
     euler2 = fib() | where(lambda x: x % 2 == 0)
                    | take_while(lambda x: x < 4000000)
                    | add
+                   | write('myfile.csv')
+                   | tee(20)
 
 """,
     classifiers = [
