@@ -8,8 +8,8 @@ setup(
     author='Julien Palard,Stephen Boesch (small enhancements)',
     author_email='javadba@gmail.com',
     url='https://github.com/javadba/Pipe',
-    download_url='https://github.com/javadba/Pipe/tarball/pipesteve'
-    long_description="""Pipe is a module enablig a sh like infix syntax (using pipes)'.
+    download_url='https://github.com/javadba/Pipe/tarball/pipesteve',
+    long_description="""Pipe is a module enabling a sh like infix syntax (using pipes)'.
 
 As an exemple, here is the solution for the 2nd Euler Project exercise :
 
