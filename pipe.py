@@ -74,6 +74,8 @@ tee
     5
     15
 
+    An optional "maxLines" argument may be supplied - which makes it similar to 'head'
+
 as_list
     Outputs an iterable as a list
     >>> (0, 1, 2) | as_list
@@ -356,6 +358,9 @@ Euler project samples :
     euler6 = square(itertools.count(1) | take(100) | add) - (itertools.count(1) | take(100) | select(square) | add)
     assert euler6 == 25164150
 
+One liner test (need to first do `pip install ilio`): 
+
+    echo "import fileinput,ilio; from pipe import *; l = list(fileinput.input('/etc/hosts') | where(lambda l: l.find('local') >= 0) | select(lambda l: 'local Entry: %s' %l) | write('/tmp/etc.hosts.locals') | tee(2)); txt = enumerate(ilio.read('/tmp/etc.hosts.locals').split('\n')); print('%s\n' %(','.join(map(str,txt))))" | python
 
 """
 from contextlib import closing
@@ -543,17 +548,17 @@ def lineout(x):
     sys.stdout.write(str(x) + "\n")
 
 @Pipe
-def tee(iterable, nlines=100):
+def tee(iterable, maxLines=None):
     for x,item in enumerate(iterable):
-        if (x < nlines):
-            sys.stdout.write(str(item) + "\n")
+        if (not maxLines) or x < maxLines:
+            sys.stdout.write(str(item))
         yield item
 
 @Pipe
 def write(iterable, fname):
   with open(fname,'w') as f:
     for x,item in enumerate(iterable):
-      msg = str(item) + "\n"
+      msg = str(item)
       f.write(msg)
       yield item
 
